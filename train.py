@@ -20,9 +20,9 @@ config = SparkConf().setAll(
      ('spark.hadoop.fs.s3a.access.key', '84da1f476c794f5cbae895d8a3a4e651'), 
      ('spark.hadoop.fs.s3a.secret.key', 'ac8127546fff97e9f9cd96b36d5e5ff175d2c6043eff6c16')])
 sc.stop()
-# sc = SparkContext(conf=config)
+sc = SparkContext(conf=config)
 
-def train(credos, data_path, max_depth, max_bins):
+def train(data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
 #     sc = SparkContext(conf=credos)
     spark = SparkSession.builder.appName("DecisionTreeClassificationExample").getOrCreate()
