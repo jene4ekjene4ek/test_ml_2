@@ -3,7 +3,9 @@ name: mlflow_fun_pyspark
 entry_points:
   main:
     parameters:
-      credos: list
+      endpoint: string
+      access_key: string
+      secret_key: string
       data_path: string
       max_depth: {type: int, default: 2 }
       max_bins: {type: int, default: 32 }
