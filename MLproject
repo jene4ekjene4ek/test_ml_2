@@ -1,7 +1,5 @@
 name: mlflow_fun_pyspark
 
-conda_env: conda.yaml
-
 entry_points:
   main:
     parameters:
