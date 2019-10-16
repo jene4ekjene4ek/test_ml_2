@@ -29,7 +29,7 @@ def train(endpoint, access_key, secret_key, data_path, max_depth, max_bins):
      ('spark.hadoop.fs.s3a.access.key', access_key), 
      ('spark.hadoop.fs.s3a.secret.key', secret_key)])
 # sc.stop()
-    sc = SparkContext(conf=credos)
+    sc = SparkContext(conf=config)
     spark = SparkSession.builder.appName("DecisionTreeClassificationExample").getOrCreate()
     
     sc.getConf().getAll()
