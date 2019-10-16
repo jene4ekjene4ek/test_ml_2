@@ -62,7 +62,6 @@ def train(data_path, max_depth, max_bins):
     
     
     if __name__ == "__main__":
-      
       from argparse import ArgumentParser
       parser = ArgumentParser()
       parser.add_argument("--experiment_name", dest="experiment_name", help="experiment_name", default="pyspark", required=False)
