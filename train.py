@@ -15,7 +15,7 @@ import mlflow
 def train(data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
     spark = SparkSession.builder.appName("DecisionTreeClassificationExample").getOrCreate()
-
+    sc.getConf().getAll()
     # Load the data stored in LIBSVM format as a DataFrame.
     data = spark.read.format("libsvm").load(data_path)
 
