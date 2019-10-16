@@ -16,7 +16,7 @@ from pyspark import SparkConf
 from pyspark import SparkContext
 
 
-def train(data_path, max_depth, max_bins):
+def train(credos, data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
     spark = SparkSession.builder.appName("DecisionTreeClassificationExample").getOrCreate()
     sc.getConf().getAll()
@@ -87,5 +87,5 @@ if __name__ == "__main__":
       print("MLflow:")
       print("  run_id:",run.info.run_uuid)
       print("  experiment_id:",run.info.experiment_id)
-      train(str(args.data_path), args.max_depth, args.max_bins)
+      train(args.credos, str(args.data_path), args.max_depth, args.max_bins)
       
