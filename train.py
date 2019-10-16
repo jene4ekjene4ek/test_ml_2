@@ -93,7 +93,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     client = mlflow.tracking.MlflowClient()
-    #print("experiment_name:",args.experiment_name)
+    print("endpoint",args.endpoint)
+    print("access",args.access_key)
+    print("secret",args.secret_key)
     #mlflow.set_experiment(args.experiment_name)
     #print("experiment_id:",client.get_experiment_by_name(args.experiment_name).experiment_id)
 
