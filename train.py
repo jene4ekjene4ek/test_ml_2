@@ -15,13 +15,19 @@ import mlflow
 from pyspark import SparkConf
 from pyspark import SparkContext
 
+config = SparkConf().setAll(
+    [('spark.hadoop.fs.s3a.endpoint', 'https://s3.eu-de.cloud-object-storage.appdomain.cloud'), 
+     ('spark.hadoop.fs.s3a.access.key', '84da1f476c794f5cbae895d8a3a4e651'), 
+     ('spark.hadoop.fs.s3a.secret.key', 'ac8127546fff97e9f9cd96b36d5e5ff175d2c6043eff6c16')])
+sc.stop()
+# sc = SparkContext(conf=config)
 
 def train(credos, data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
-    sc = SparkContext(conf=credos)
+#     sc = SparkContext(conf=credos)
     spark = SparkSession.builder.appName("DecisionTreeClassificationExample").getOrCreate()
     
-#     sc.getConf().getAll()
+    sc.getConf().getAll()
     # Load the data stored in LIBSVM format as a DataFrame.
     data = spark.read.format("libsvm").load(data_path)
 
@@ -72,7 +78,7 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
     parser = ArgumentParser()
     parser.add_argument("--experiment_name", dest="experiment_name", help="experiment_name", default="pyspark", required=False)
-    parser.add_argument("--credos", dest="credos", help="credos", required=False, type=list)
+#     parser.add_argument("--credos", dest="credos", help="credos", required=False, type=list)
     parser.add_argument("--data_path", dest="data_path", help="data_path", required=True)
     parser.add_argument("--max_depth", dest="max_depth", help="max_depth", default=2, type=int)
     parser.add_argument("--max_bins", dest="max_bins", help="max_bins", default=32, type=int)
@@ -89,5 +95,5 @@ if __name__ == "__main__":
       print("MLflow:")
       print("  run_id:",run.info.run_uuid)
       print("  experiment_id:",run.info.experiment_id)
-      train(args.credos, str(args.data_path), args.max_depth, args.max_bins)
+      train(str(args.data_path), args.max_depth, args.max_bins)
       
