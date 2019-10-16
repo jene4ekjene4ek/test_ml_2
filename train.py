@@ -19,6 +19,7 @@ from pyspark import SparkContext
 
 def train(credos, data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
+    print("Parameters: credos: {}  ".format(credos))
 #     sc = SparkContext(conf=credos)
 #     config = SparkConf().setAll(
 #     [('spark.hadoop.fs.s3a.endpoint', 'https://s3.eu-de.cloud-object-storage.appdomain.cloud'), 
