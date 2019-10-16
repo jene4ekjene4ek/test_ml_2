@@ -9,6 +9,7 @@ from pyspark.ml.classification import DecisionTreeClassifier
 from pyspark.ml.feature import StringIndexer, VectorIndexer
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from pyspark.sql import SparkSession
+import mlflow
 
 
 def train(data_path, max_depth, max_bins):
