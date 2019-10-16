@@ -82,5 +82,5 @@ if __name__ == "__main__":
       print("MLflow:")
       print("  run_id:",run.info.run_uuid)
       print("  experiment_id:",run.info.experiment_id)
-      train(args.data_path, args.max_depth, args.max_bins)
+      train(str(args.data_path), args.max_depth, args.max_bins)
       
