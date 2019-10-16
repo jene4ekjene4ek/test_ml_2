@@ -25,7 +25,7 @@ def train(endpoint, access_key, secret_key, data_path, max_depth, max_bins):
     print("Credoss: endpoint: {},  access_key {}, secret_key {} ".format(endpoint, access_key, secret_key))
 #     sc = SparkContext(conf=credos)
     config = SparkConf().setAll(
-    [('spark.hadoop.fs.s3a.endpoint', endpoiny), 
+    [('spark.hadoop.fs.s3a.endpoint', endpoint), 
      ('spark.hadoop.fs.s3a.access.key', access_key), 
      ('spark.hadoop.fs.s3a.secret.key', secret_key)])
 # sc.stop()
