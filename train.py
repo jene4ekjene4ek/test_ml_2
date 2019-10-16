@@ -15,6 +15,9 @@ import mlflow
 from pyspark import SparkConf
 from pyspark import SparkContext
 
+conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
+sc = SparkContext(conf=conf)
+print(sc.getConf().getAll())
 
 
 def train(credos, data_path, max_depth, max_bins):
