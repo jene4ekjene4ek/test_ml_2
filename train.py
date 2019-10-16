@@ -85,7 +85,7 @@ if __name__ == "__main__":
     parser.add_argument("--experiment_name", dest="experiment_name", help="experiment_name", default="pyspark", required=False)
     parser.add_argument("--endpoint", dest="endpoint", help="endpoint", required=False)
     parser.add_argument("--access_key", dest="access_key", help="access_key", required=False)
-    parser.add_argument("--secret_key", dest="sectet_key", help="secret_key", required=False)
+    parser.add_argument("--secret_key", dest="secret_key", help="secret_key", required=False)
     parser.add_argument("--data_path", dest="data_path", help="data_path", required=True)
     parser.add_argument("--max_depth", dest="max_depth", help="max_depth", default=2, type=int)
     parser.add_argument("--max_bins", dest="max_bins", help="max_bins", default=32, type=int)
