@@ -15,12 +15,12 @@ import mlflow
 from pyspark import SparkConf
 from pyspark import SparkContext
 
-conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
-sc = SparkContext(conf=conf)
+# conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
+# sc = SparkContext(conf=conf)
 # print(sc.getConf().getAll())
 
 
-def train(endpoint, access_key, secret_key, data_path, max_depth, max_bins):
+def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
     print("Credoss: endpoint: {},  access_key {}, secret_key {} ".format(endpoint, access_key, secret_key))
 #     sc = SparkContext(conf=credos)
@@ -98,11 +98,12 @@ if __name__ == "__main__":
     print("secret",args.secret_key)
     #mlflow.set_experiment(args.experiment_name)
     #print("experiment_id:",client.get_experiment_by_name(args.experiment_name).experiment_id)
-
+    conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
+    sc = SparkContext(conf=conf)
 
     with mlflow.start_run() as run:
       print("MLflow:")
       print("  run_id:",run.info.run_uuid)
       print("  experiment_id:",run.info.experiment_id)
-      train(args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins)
+      train(sc, args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins)
       
