@@ -73,9 +73,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     client = mlflow.tracking.MlflowClient()
-    print("experiment_name:",args.experiment_name)
-    mlflow.set_experiment(args.experiment_name)
-    print("experiment_id:",client.get_experiment_by_name(args.experiment_name).experiment_id)
+    #print("experiment_name:",args.experiment_name)
+    #mlflow.set_experiment(args.experiment_name)
+    #print("experiment_id:",client.get_experiment_by_name(args.experiment_name).experiment_id)
 
 
     with mlflow.start_run() as run:
