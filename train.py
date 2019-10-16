@@ -17,7 +17,7 @@ from pyspark import SparkContext
 
 conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
 sc = SparkContext(conf=conf)
-print(sc.getConf().getAll())
+# print(sc.getConf().getAll())
 
 
 def train(endpoint, access_key, secret_key, data_path, max_depth, max_bins):
