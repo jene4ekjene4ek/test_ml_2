@@ -15,24 +15,17 @@ import mlflow
 from pyspark import SparkConf
 from pyspark import SparkContext
 
-# conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
-# sc = SparkContext(conf=conf)
-# print(sc.getConf().getAll())
-
 
 def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
-    print("Credoss: endpoint: {},  access_key {}, secret_key {} ".format(endpoint, access_key, secret_key))
-#     sc = SparkContext(conf=credos)
     config = SparkConf().setAll(
-    [('spark.hadoop.fs.s3a.endpoint', endpoint), 
-     ('spark.hadoop.fs.s3a.access.key', access_key), 
-     ('spark.hadoop.fs.s3a.secret.key', secret_key)])
+                                [('spark.hadoop.fs.s3a.endpoint', endpoint), 
+                                 ('spark.hadoop.fs.s3a.access.key', access_key), 
+                                 ('spark.hadoop.fs.s3a.secret.key', secret_key)])
     sc.stop()
     sc = SparkContext(conf=config)
     spark = SparkSession.builder.appName("DecisionTreeClassificationExample").getOrCreate()
-    
-    sc.getConf().getAll()
+
     # Load the data stored in LIBSVM format as a DataFrame.
     data = spark.read.format("libsvm").load(data_path)
 
@@ -93,11 +86,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     client = mlflow.tracking.MlflowClient()
-    print("endpoint",args.endpoint)
-    print("access",args.access_key)
-    print("secret",args.secret_key)
-    #mlflow.set_experiment(args.experiment_name)
-    #print("experiment_id:",client.get_experiment_by_name(args.experiment_name).experiment_id)
+ 
     conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
     sc = SparkContext(conf=conf)
 
