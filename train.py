@@ -18,12 +18,12 @@ from pyspark import SparkContext
 
 def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
-    config = SparkConf().setAll(
-                                [('spark.hadoop.fs.s3a.endpoint', endpoint), 
-                                 ('spark.hadoop.fs.s3a.access.key', access_key), 
-                                 ('spark.hadoop.fs.s3a.secret.key', secret_key)])
-    sc.stop()
-    sc = SparkContext(conf=config)
+#     config = SparkConf().setAll(
+#                                 [('spark.hadoop.fs.s3a.endpoint', endpoint), 
+#                                  ('spark.hadoop.fs.s3a.access.key', access_key), 
+#                                  ('spark.hadoop.fs.s3a.secret.key', secret_key)])
+#     sc.stop()
+#     sc = SparkContext(conf=config)
     spark = SparkSession.builder.appName("DecisionTreeClassificationExample").getOrCreate()
 
     # Load the data stored in LIBSVM format as a DataFrame.
@@ -76,9 +76,9 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
     parser = ArgumentParser()
     parser.add_argument("--experiment_name", dest="experiment_name", help="experiment_name", default="pyspark", required=False)
-    parser.add_argument("--endpoint", dest="endpoint", help="endpoint", required=False)
-    parser.add_argument("--access_key", dest="access_key", help="access_key", required=False)
-    parser.add_argument("--secret_key", dest="secret_key", help="secret_key", required=False)
+    #parser.add_argument("--endpoint", dest="endpoint", help="endpoint", required=False)
+    #parser.add_argument("--access_key", dest="access_key", help="access_key", required=False)
+    #parser.add_argument("--secret_key", dest="secret_key", help="secret_key", required=False)
     parser.add_argument("--data_path", dest="data_path", help="data_path", required=True)
     parser.add_argument("--max_depth", dest="max_depth", help="max_depth", default=2, type=int)
     parser.add_argument("--max_bins", dest="max_bins", help="max_bins", default=32, type=int)
