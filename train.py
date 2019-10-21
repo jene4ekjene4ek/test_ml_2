@@ -16,7 +16,7 @@ from pyspark import SparkConf
 from pyspark import SparkContext
 
 
-def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
+def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins, save_path):
 
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
     config = SparkConf().setAll(
@@ -72,7 +72,7 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
     print(tree_model)
     
     mlflow.spark.log_model(model, "spark-model")
-    mlflow.spark.save_model(model, "spark-model")
+    mlflow.spark.save_model(model, save_path)
     spark.stop()
     
     
