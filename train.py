@@ -10,7 +10,7 @@ from pyspark.ml.feature import StringIndexer, VectorIndexer
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from pyspark.sql import SparkSession
 import mlflow
-from mlflow import spark_log
+from mlflow import spark
 
 from pyspark import SparkConf
 from pyspark import SparkContext
@@ -71,7 +71,7 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
     tree_model = model.stages[2]
     print(tree_model)
     
-    mlflow_spark.log_model(model, "spark-model")
+    mlflow.spark.log_model(model, "spark-model")
     spark.stop()
     
     
