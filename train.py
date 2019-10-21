@@ -25,7 +25,7 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins, 
                                  ('spark.hadoop.fs.s3a.secret.key', secret_key),
                                  ('spark.yarn.appMasterEnv.MLFLOW_S3_ENDPOINT_URL', endpoint),
                                  ('spark.yarn.appMasterEnv.AWS_ACCESS_KEY_ID', access_key),
-                                 ('spark.yarn.appMasterEnv.AWS_SECRET_ACCESS_KEY', sekret_key)])
+                                 ('spark.yarn.appMasterEnv.AWS_SECRET_ACCESS_KEY', secret_key)])
     
     sc.stop()
     sc = SparkContext(conf=config)
