@@ -72,6 +72,7 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
     print(tree_model)
     
     mlflow.spark.log_model(model, "spark-model")
+    mlflow.spark.save_model(model, "spark-model")
     spark.stop()
     
     
