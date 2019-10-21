@@ -17,7 +17,7 @@ from pyspark import SparkContext
 
 
 # def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
-def train(sc, data_path, max_depth, max_bins):
+def train(sc, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
 #     config = SparkConf().setAll(
 #                                 [('spark.hadoop.fs.s3a.endpoint', endpoint), 
@@ -28,6 +28,7 @@ def train(sc, data_path, max_depth, max_bins):
     spark = SparkSession.builder.appName("DecisionTreeClassificationExample").getOrCreate()
 
     # Load the data stored in LIBSVM format as a DataFrame.
+    data_path = "sample_libsvm_data.txt"
     data = spark.read.format("libsvm").load(data_path)
 
     # Index labels, adding metadata to the label column.
@@ -80,7 +81,7 @@ if __name__ == "__main__":
     #parser.add_argument("--endpoint", dest="endpoint", help="endpoint", required=False)
     #parser.add_argument("--access_key", dest="access_key", help="access_key", required=False)
     #parser.add_argument("--secret_key", dest="secret_key", help="secret_key", required=False)
-    parser.add_argument("--data_path", dest="data_path", help="data_path", required=True)
+    #parser.add_argument("--data_path", dest="data_path", help="data_path", required=True)
     parser.add_argument("--max_depth", dest="max_depth", help="max_depth", default=2, type=int)
     parser.add_argument("--max_bins", dest="max_bins", help="max_bins", default=32, type=int)
     parser.add_argument("--describe", dest="describe", help="Describe data", default=False, action='store_true')
@@ -96,5 +97,5 @@ if __name__ == "__main__":
       print("  run_id:",run.info.run_uuid)
       print("  experiment_id:",run.info.experiment_id)
       #train(sc, args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins)
-      train(sc, str(args.data_path), args.max_depth, args.max_bins)
+      train(sc, args.max_depth, args.max_bins)
       
