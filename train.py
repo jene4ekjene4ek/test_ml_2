@@ -22,7 +22,11 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins, 
     config = SparkConf().setAll(
                                 [('spark.hadoop.fs.s3a.endpoint', endpoint), 
                                  ('spark.hadoop.fs.s3a.access.key', access_key), 
-                                 ('spark.hadoop.fs.s3a.secret.key', secret_key)])
+                                 ('spark.hadoop.fs.s3a.secret.key', secret_key),
+                                 ('spark.yarn.appMasterEnv.MLFLOW_S3_ENDPOINT_URL', endpoint),
+                                 ('spark.yarn.appMasterEnv.AWS_ACCESS_KEY_ID', access_key),
+                                 ('spark.yarn.appMasterEnv.AWS_SECRET_ACCESS_KEY', sekret_key)])
+    
     sc.stop()
     sc = SparkContext(conf=config)
     spark = SparkSession.builder.appName("DecisionTreeClassificationExample").getOrCreate()
@@ -71,12 +75,14 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins, 
     tree_model = model.stages[2]
     print(tree_model)
     
+    
+    
     mlflow.spark.log_model(model, save_path)
 #     try:
 #         mlflow.spark.save_model(model, save_path)
 #     except: 
-    spark.stop()
     
+    spark.stop()
     
 if __name__ == "__main__":
     from argparse import ArgumentParser
