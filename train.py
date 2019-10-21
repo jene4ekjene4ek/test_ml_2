@@ -10,7 +10,7 @@ from pyspark.ml.feature import StringIndexer, VectorIndexer
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from pyspark.sql import SparkSession
 import mlflow
-
+from mlflow import spark_log
 
 from pyspark import SparkConf
 from pyspark import SparkContext
