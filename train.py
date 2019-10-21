@@ -77,9 +77,9 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins, 
     
     
     
-    mlflow.spark.log_model(model, save_path)
+    mlflow.spark.log_model(model, '')
 #     try:
-    mlflow.spark.save_model(model, save_path)
+#     mlflow.spark.save_model(model, save_path)
 #     except: 
     
     spark.stop()
