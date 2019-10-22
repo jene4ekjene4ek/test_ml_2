@@ -112,5 +112,6 @@ if __name__ == "__main__":
       print("  run_id:",run.info.run_uuid)
       print("  experiment_id:",run.info.experiment_id)
       train(sc, args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins, str(args.save_path))
-    path = mlflow.get_artifact_uri(artifact_path=None)
+    mlflow.get_artifact_uri(artifact_path=None)
+    mlflow.log_artifact(artifact_path=None)
     print(path)
