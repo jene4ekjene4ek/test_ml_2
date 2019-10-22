@@ -75,7 +75,8 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins, 
     tree_model = model.stages[2]
     print(tree_model)
     
-    
+    mlflow.log_param('max_depth', max_depth)
+    mlflow.log_param('max_bins', max_bins)
     
     mlflow.spark.log_model(model, '')
     mlflow.spark.save_model(model, '')
