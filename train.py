@@ -104,7 +104,9 @@ if __name__ == "__main__":
     sc = SparkContext(conf=conf)
     
     #mlflow.create_experiment('exp', artifact_location="s3://orlow-cos/pyspark-model/")
-    mlflow.set_experiment('exp')
+#     mlflow.set_experiment('exp')
+    path = mlflow.get_artifact_uri(artifact_path=None)
+    print(path)
     with mlflow.start_run() as run:
       print("MLflow:")
       print("  run_id:",run.info.run_uuid)
