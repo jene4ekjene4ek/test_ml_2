@@ -105,10 +105,11 @@ if __name__ == "__main__":
     
     #mlflow.create_experiment('exp', artifact_location="s3://orlow-cos/pyspark-model/")
 #     mlflow.set_experiment('exp')
-#     path = mlflow.get_artifact_uri(artifact_path=None)
-#     print(path)
+    
     with mlflow.start_run() as run:
       print("MLflow:")
       print("  run_id:",run.info.run_uuid)
       print("  experiment_id:",run.info.experiment_id)
       train(sc, args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins, str(args.save_path))
+    path = mlflow.get_artifact_uri(artifact_path=None)
+    print(path)
