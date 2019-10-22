@@ -105,8 +105,9 @@ if __name__ == "__main__":
     conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
     sc = SparkContext(conf=conf)
     
-    mlflow.create_experiment('exp', artifact_location="s3://orlow-cos/pyspark-model/")
-    mlflow.set_experiment('exp')
+    exp = mlflow.create_experiment('exp', artifact_location="s3://orlow-cos/pyspark-model/")
+    print(exp)
+#     mlflow.set_experiment('exp')
     
     with mlflow.start_run() as run:
       print("MLflow:")
@@ -115,6 +116,6 @@ if __name__ == "__main__":
       train(sc, args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins, str(args.save_path))
       mlflow.log_param('max_depth', args.max_depth)
       mlflow.log_param('max_bins', args.max_bins)    
-    mlflow.get_artifact_uri(artifact_path=None)
+      mlflow.get_artifact_uri(artifact_path=None)
 #     mlflow.log_artifact(artifact_path=None)
     #print(path)
