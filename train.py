@@ -105,8 +105,8 @@ if __name__ == "__main__":
     conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
     sc = SparkContext(conf=conf)
     
-    #mlflow.create_experiment('exp', artifact_location="s3://orlow-cos/pyspark-model/")
-#     mlflow.set_experiment('exp')
+    mlflow.create_experiment('exp', artifact_location="s3://orlow-cos/pyspark-model/")
+    mlflow.set_experiment('exp')
     
     with mlflow.start_run() as run:
       print("MLflow:")
