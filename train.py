@@ -33,6 +33,9 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins, 
 
     # Load the data stored in LIBSVM format as a DataFrame.
     data = spark.read.format("libsvm").load(data_path)
+    
+    df_l = data.select('label')
+    df_l.repartition(1).write.csv('s3://orlow-cos/pyspark-model/data.csv', mode='overwrite', sep='\t', header=True)
 
     # Index labels, adding metadata to the label column.
     # Fit on whole dataset to include all labels in index.
@@ -117,5 +120,5 @@ if __name__ == "__main__":
       mlflow.log_param('max_depth', args.max_depth)
       mlflow.log_param('max_bins', args.max_bins)    
       mlflow.get_artifact_uri(artifact_path=None)
-    mlflow.log_artifact(artifact_path=' s3://orlow-cos/pyspark-model/')
+    mlflow.log_artifact(artifact_path='s3://orlow-cos/pyspark-model/')
     #print(path)
