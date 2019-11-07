@@ -78,11 +78,11 @@ def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
     tree_model = model.stages[2]
     print(tree_model)
     
-    mlflow.log_param('max_depth', max_depth)
-    mlflow.log_param('max_bins', max_bins)
+#     mlflow.log_param('max_depth', max_depth)
+#     mlflow.log_param('max_bins', max_bins)
     
-    mlflow.spark.log_model(model, '')
-    mlflow.spark.save_model(model, '')
+#     mlflow.spark.log_model(model, '')
+#     mlflow.spark.save_model(model, '')
 #     try:
 #     mlflow.spark.save_model(model, save_path)
 #     except: 
@@ -120,5 +120,5 @@ if __name__ == "__main__":
       mlflow.log_param('max_depth', args.max_depth)
       mlflow.log_param('max_bins', args.max_bins)    
       mlflow.get_artifact_uri(artifact_path=None)
-    mlflow.log_artifact(artifact_path='s3://orlow-cos/pyspark-model/')
+#     mlflow.log_artifact(artifact_path='s3://orlow-cos/pyspark-model/')
     #print(path)
