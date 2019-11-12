@@ -7,8 +7,8 @@ entry_points:
       access_key: string
       secret_key: string
       data_path: string
-      #save_path: string
+      save_path: string
      
       max_depth: {type: int, default: 2 }
       max_bins: {type: int, default: 32 }
-    command: "python train.py --endpoint {endpoint} --access_key {access_key} --secret_key {secret_key} --data_path {data_path} --max_depth {max_depth} --max_bins {max_bins}"
+    command: "python train.py --endpoint {endpoint} --access_key {access_key} --secret_key {secret_key} --data_path {data_path} --max_depth {max_depth} --max_bins {max_bins} --save_path {save_path}"
