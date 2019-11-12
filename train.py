@@ -16,7 +16,7 @@ from pyspark import SparkConf
 from pyspark import SparkContext
 
 
-def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins, save_path):
+def train(sc, jars endpoint, access_key, secret_key, data_path, max_depth, max_bins, save_path):
 # def train(sc, data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
     config = SparkConf().setAll(
