@@ -122,5 +122,5 @@ if __name__ == "__main__":
       mlflow.log_param('max_depth', args.max_depth)
       mlflow.log_param('max_bins', args.max_bins)    
 #       mlflow.get_artifact_uri(artifact_path=None)
-    path = mlflow.log_artifact(artifact_path='s3://bohomaz-cos/artifact')
-    print(path)
+      path = mlflow.log_artifact(artifact_path='s3://bohomaz-cos/artifact')
+      print(path)
