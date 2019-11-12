@@ -100,6 +100,7 @@ if __name__ == "__main__":
     parser.add_argument("--max_depth", dest="max_depth", help="max_depth", default=2, type=int)
     parser.add_argument("--max_bins", dest="max_bins", help="max_bins", default=32, type=int)
     parser.add_argument("--save_path", dest="save_path", help="save_path", required=True)
+    parser.add_argument("--jars", dest="jars", help="jars", required=False)
     parser.add_argument("--describe", dest="describe", help="Describe data", default=False, action='store_true')
     args = parser.parse_args()
 
@@ -116,7 +117,7 @@ if __name__ == "__main__":
       print("MLflow:")
       print("  run_id:",run.info.run_uuid)
       print("  experiment_id:",run.info.experiment_id)
-      train(sc, args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins, args.save_path)
+      train(sc, args.jars, args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins, args.save_path)
 #       train(sc, str(args.data_path), args.max_depth, args.max_bins)
       mlflow.log_param('max_depth', args.max_depth)
       mlflow.log_param('max_bins', args.max_bins)    
