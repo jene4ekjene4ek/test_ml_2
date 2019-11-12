@@ -16,7 +16,7 @@ from pyspark import SparkConf
 from pyspark import SparkContext
 
 
-def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins, save_path):
+def train(sc, endpoint, access_key, secret_key, data_path, max_depth, max_bins):
 # def train(sc, data_path, max_depth, max_bins):
     print("Parameters: max_depth: {}  max_bins: {}".format(max_depth,max_bins))
     config = SparkConf().setAll(
@@ -99,7 +99,7 @@ if __name__ == "__main__":
     parser.add_argument("--data_path", dest="data_path", help="data_path", required=True)
     parser.add_argument("--max_depth", dest="max_depth", help="max_depth", default=2, type=int)
     parser.add_argument("--max_bins", dest="max_bins", help="max_bins", default=32, type=int)
-    parser.add_argument("--save_path", dest="save_path", help="save_path", required=True)
+#     parser.add_argument("--save_path", dest="save_path", help="save_path", required=True)
     parser.add_argument("--describe", dest="describe", help="Describe data", default=False, action='store_true')
     args = parser.parse_args()
 
@@ -116,10 +116,10 @@ if __name__ == "__main__":
       print("MLflow:")
       print("  run_id:",run.info.run_uuid)
       print("  experiment_id:",run.info.experiment_id)
-      train(sc, args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins, args.save_path)
+      train(sc, args.endpoint, args.access_key, args.secret_key, str(args.data_path), args.max_depth, args.max_bins)
 #       train(sc, str(args.data_path), args.max_depth, args.max_bins)
       mlflow.log_param('max_depth', args.max_depth)
       mlflow.log_param('max_bins', args.max_bins)    
       mlflow.get_artifact_uri(artifact_path=None)
-    mlflow.log_artifact(artifact_path='s3://bohomaz-cos/pyspark-model/')
+    #mlflow.log_artifact(artifact_path='s3://bohomaz-cos/pyspark-model/')
     #print(path)
