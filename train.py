@@ -121,6 +121,6 @@ if __name__ == "__main__":
 #       train(sc, str(args.data_path), args.max_depth, args.max_bins)
       mlflow.log_param('max_depth', args.max_depth)
       mlflow.log_param('max_bins', args.max_bins)    
-      mlflow.get_artifact_uri(artifact_path=None)
+#       mlflow.get_artifact_uri(artifact_path=None)
 #     mlflow.log_artifact(artifact_path='s3://bohomaz-cos/')
     #print(path)
