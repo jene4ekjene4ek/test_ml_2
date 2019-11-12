@@ -81,8 +81,8 @@ def train(sc, jars, endpoint, access_key, secret_key, data_path, max_depth, max_
     mlflow.log_param('max_depth', max_depth)
     mlflow.log_param('max_bins', max_bins)
     
-    mlflow.spark.log_model(model, '')
-    mlflow.spark.save_model(model, '')
+    mlflow.spark.log_model(model, save_path)
+    mlflow.spark.save_model(model, save_path)
 #     try:
 #     mlflow.spark.save_model(model, save_path)
 #     except: 
